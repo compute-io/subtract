@@ -1,7 +1,7 @@
 {
   "name": "compute-subtract",
   "version": "0.0.0",
-  "description": "Computes an element-wise subtraction from a numeric array.",
+  "description": "Computes an element-wise subtraction of a numeric array.",
   "author": {
     "name": "Athan Reines",
     "email": "kgryte@gmail.com"
@@ -25,7 +25,13 @@
   "keywords": [
     "compute.io",
     "compute",
-    "computation"
+    "computation",
+    "mathematics",
+    "math",
+    "algebra",
+    "subtraction",
+    "element-wise",
+    "array"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/subtract/issues"

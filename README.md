@@ -1,8 +1,8 @@
-subtract
+Subtract
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes an element-wise subtraction from a numeric array.
+> Computes an element-wise subtraction of a numeric array.
 
 
 ## Installation
@@ -19,24 +19,54 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 To use the module,
 
 ``` javascript
-var foo = require( 'compute-subtract' );
+var subtract = require( 'compute-subtract' );
 ```
 
-#### foo( arr )
+#### subtract( arr, x )
 
-What does this function do?
+Computes an element-wise subtraction of an input `array`. `x` may be either an `array` of equal length or a scalar.
+
+``` javascript
+subtract( [ 2, 1, 4, 2 ], 1 );
+// returns [ 1, 0, 3, 1 ]
+
+subtract( [ 2, 1, 4, 2 ], [ 1, 2, 3, 3 ] );
+// returns [ 1, -1, 1, -1 ]
+```
 
 
 ## Examples
 
 ``` javascript
-var foo = require( 'compute-subtract' );
+var subtract = require( 'compute-subtract' );
+
+// Simulate some data...
+var data = new Array( 100 );
+
+for ( var i = 0; i < data.length; i++ ) {
+	data[ i ] = Math.round( Math.random()*100 );
+}
+
+subtract( data, 10 );
+
+console.log( data.join( '\n' ) );
 ```
 
 To run the example code from the top-level application directory,
 
 ``` bash
 $ node ./examples/index.js
+```
+
+## Notes
+
+The function mutates the input `array`. If mutation is undesired,
+
+``` javascript
+var data = [ 1, 2, 3, 4 ],
+	copy = data.slice();
+
+subtract( copy, 2 );
 ```
 
 
