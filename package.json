@@ -1,6 +1,6 @@
 {
   "name": "compute-subtract",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Computes an element-wise subtraction of a numeric array.",
   "author": {
     "name": "Athan Reines",
