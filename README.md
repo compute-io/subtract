@@ -60,7 +60,7 @@ $ node ./examples/index.js
 
 ## Notes
 
-The function mutates the input `array`. If mutation is undesired,
+This function mutates the input `array`. If mutation is undesired,
 
 ``` javascript
 var data = [ 1, 2, 3, 4 ],
