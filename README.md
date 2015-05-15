@@ -103,7 +103,7 @@ function getValue( d, i, j ) {
 	return d.x;
 }
 
-var out = add( data, arr, {
+var out = subtract( data, arr, {
 	'accessor': getValue
 });
 // returns [ 1, -2, 2, -2, -1 ]
