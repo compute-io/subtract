@@ -77,7 +77,7 @@ var out = subtract( data, 4, {
 // returns [ 1, -1, 4, -1, -2 ]
 ```
 
-When adding values between two object `arrays`, provide an accessor `function` which accepts `3` arguments.
+When subtracting values between two object `arrays`, provide an accessor `function` which accepts `3` arguments.
 
 ``` javascript
 var data = [
