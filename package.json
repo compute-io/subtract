@@ -1,7 +1,7 @@
 {
   "name": "compute-subtract",
   "version": "1.0.1",
-  "description": "Computes an element-wise subtraction of a numeric array.",
+  "description": "Computes an element-wise subtraction.",
   "author": {
     "name": "Athan Reines",
     "email": "kgryte@gmail.com"
@@ -31,17 +31,27 @@
     "arithmetic",
     "subtraction",
     "element-wise",
-    "array"
+    "array",
+    "sub",
+    "accessor"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/subtract/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "validate.io-array": "^1.0.5",
+    "validate.io-boolean-primitive": "^1.0.0",
+    "validate.io-function": "^1.0.2",
+    "validate.io-number-primitive": "^1.0.0",
+    "validate.io-object": "^1.0.3"
+  },
   "devDependencies": {
-    "chai": "1.x.x",
-    "mocha": "1.x.x",
+    "chai": "2.x.x",
     "coveralls": "^2.11.1",
-    "istanbul": "^0.3.0"
+    "istanbul": "^0.3.0",
+    "jshint": "2.x.x",
+    "jshint-stylish": "^1.0.0",
+    "mocha": "2.x.x"
   },
   "licenses": [
     {
