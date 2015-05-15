@@ -54,7 +54,7 @@ console.log( arr === out );
 // returns true
 ```
 
-__Note__: mutation is the `array` equivalent of an __subtract-equal__ (`-=`).
+__Note__: mutation is the `array` equivalent of a __minus-equal__ (`-=`).
 
 For object `arrays`, provide an accessor `function` for accessing `array` values.
 
