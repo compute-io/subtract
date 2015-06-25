@@ -22,7 +22,7 @@ var subtract = require( 'compute-subtract' );
 
 #### subtract( x, y[, opts] )
 
-Computes an element-wise subtraction. `x` can be a [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays) or [`matrix`](https://github.com/dstructs/matrix). `y` has to be either an `array` or `matrix` of equal dimensions as `x` or a single number. The function returns either an `array` with length equal to that of the input `array`, a `matrix` with equal dimensions as input `x` or a single number.
+Computes an element-wise subtraction. `x` can be a [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays) or [`matrix`](https://github.com/dstructs/matrix). `y` has to be either an `array` or `matrix` of equal dimensions as `x` or a single number. The function returns either an `array` with length equal to that of the input array(s), a `matrix` with equal dimensions as the input matric(es) or a single number.
 
 ``` javascript
 var matrix = require( 'dstructs-matrix' ),
@@ -287,6 +287,22 @@ __Note__: mutation is the `array` equivalent of a __minus-equal__ (`-=`).
 		'dtype': 'int8'
 	});
 	// returns Int8Array( [0,0,0] );
+	```
+
+*	When calling the function with a numeric value as the first argument and a `matrix` or `array` as the second argument, only the `dtype` option is applicable.
+
+	``` javascript
+		// Valid:
+		var out = subtract( 4, [ 1, 2, 3 ], {
+			'dtype': 'int8'
+		});
+		// returns Int8Array( [3,2,1] )
+
+		// Not valid:
+		var out = subtract( 4, [ 1, 2, 3 ], {
+			'copy': false
+		});
+		// throws an error
 	```
 
 ## Examples
