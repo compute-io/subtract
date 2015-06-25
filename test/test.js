@@ -90,12 +90,11 @@ describe( 'compute-subtract', function tests() {
 		}
 	});
 
-	it( 'should throw an error if provided a number as the first argument and an option', function test() {
+	it( 'should throw an error if provided a number as the first argument and an not applicable option', function test() {
 		var values = [
 			{'accessor': function getValue( d ) { return d; } },
 			{'copy': false},
 			{'path': 'x'},
-			{'dtype': 'int32'},
 		];
 
 		for ( var i = 0; i < values.length; i++ ) {
@@ -151,6 +150,38 @@ describe( 'compute-subtract', function tests() {
 		actual = subtract( 10, data );
 		expected = [ 9, 8 ];
 		assert.deepEqual( actual, expected );
+	});
+
+	it( 'should accept a number as the first argument and an array as the second argument and cast to a different dtype', function test() {
+		var data, actual, expected;
+		data = [ 1, 2 ];
+		actual = subtract( 10, data, {
+			'dtype':'int32'
+		});
+		expected = new Int32Array( [9,8] );
+		assert.deepEqual( actual, expected );
+	});
+
+
+	it( 'should accept a number as the first argument and a matrix as the second argument', function test() {
+		var data, actual, expected;
+		data = matrix( new Int8Array( [ 1,2,3,4 ] ), [2,2] );
+		actual = subtract( 4, data );
+		expected = matrix( new Float64Array( [3,2,1,0] ), [2,2] );
+
+		assert.deepEqual( actual.data, expected.data );
+	});
+
+	it( 'should subtract a matrix from a scalar and cast to a different dtype', function test() {
+		var data, actual, expected;
+		data = matrix( new Int8Array( [1,2,3,4] ), [2,2] );
+		actual = subtract( 4, data, {
+			'dtype': 'int32'
+		});
+		expected = matrix( new Int32Array( [3,2,1,0] ), [2,2] );
+
+		assert.strictEqual( actual.dtype, 'int32' );
+		assert.deepEqual( actual.data, expected.data );
 	});
 
 	it( 'should perform an element-wise subtraction when provided a plain array and a scalar', function test() {
