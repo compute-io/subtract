@@ -135,6 +135,7 @@ describe( 'accessor subtract', function tests() {
 	it( 'should handle non-numeric values by setting the element to NaN', function test() {
 		var data, actual, expected, y;
 
+		// numeric value
 		data = [
 			{'x':1},
 			{'x':null},
@@ -147,15 +148,29 @@ describe( 'accessor subtract', function tests() {
 
 		assert.deepEqual( actual, expected );
 
+		// single non-numeric value
+		y = false;
+		actual = new Array( data.length );
+		actual = subtract( actual, data, y, getValue );
+		expected = [ NaN, NaN, NaN ];
+
+		assert.deepEqual( actual, expected );
+
 		// numeric array
 		y = [ 1, 2, 3 ];
 		actual = new Array( data.length );
 		actual = subtract( actual, data, y, getValue );
-		expected = [ 0, NaN, 2 ];
+		expected = [ 0, NaN, 0 ];
 
-		function getValue( d, i ) {
-			return d.x;
-		}
+		assert.deepEqual( actual, expected );
+
+		// typed array
+		y = new Int32Array( [1,2,3] );
+		actual = new Array( data.length );
+		actual = subtract( actual, data, y, getValue );
+		expected = [ 0, NaN, 0 ];
+
+		assert.deepEqual( actual, expected );
 
 		// object array
 		y = [
@@ -165,7 +180,13 @@ describe( 'accessor subtract', function tests() {
 		];
 		actual = new Array( data.length );
 		actual = subtract( actual, data, y, getValue2 );
-		expected = [ 0, NaN, 2 ];
+		expected = [ 0, NaN, 0 ];
+
+		assert.deepEqual( actual, expected );
+
+		function getValue( d, i ) {
+			return d.x;
+		}
 
 		function getValue2( d, i, j ) {
 			if ( j === 0 ) {
@@ -181,6 +202,16 @@ describe( 'accessor subtract', function tests() {
 		expect( foo ).to.throw( Error );
 		function foo() {
 			subtract( [], [1,2], [1,2,3], getValue );
+		}
+		function getValue( d ) {
+			return d;
+		}
+	});
+
+	it( 'should throw an error if provided a typed array to be subtracted which is not of equal length to the input array', function test() {
+		expect( foo ).to.throw( Error );
+		function foo() {
+			subtract( [], [1,2], new Int32Array( [1,2,3] ), getValue );
 		}
 		function getValue( d ) {
 			return d;

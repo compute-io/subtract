@@ -117,6 +117,22 @@ describe( 'deepset subtract', function tests() {
 	it( 'should handle non-numeric values by setting the element to NaN', function test() {
 		var data, actual, expected, y;
 
+		// subtracting a non-numeric value
+		data = [
+			{'x':[9,null]},
+			{'x':[9,1]},
+			{'x':[9,true]},
+			{'x':[9,3]}
+		];
+		actual = subtract( data, null, 'x.1' );
+		expected = [
+			{'x':[9,NaN]},
+			{'x':[9,NaN]},
+			{'x':[9,NaN]},
+			{'x':[9,NaN]}
+		];
+		assert.deepEqual( data, expected );
+
 		// subtracting a scalar
 		data = [
 			{'x':[9,null]},
@@ -141,6 +157,23 @@ describe( 'deepset subtract', function tests() {
 			{'x':[9,3]}
 		];
 		y = [ 0, 1, 2, 3];
+		actual = subtract( data, y, 'x.1' );
+		expected = [
+			{'x':[9,NaN]},
+			{'x':[9,0]},
+			{'x':[9,NaN]},
+			{'x':[9,0]}
+		];
+		assert.deepEqual( data, expected );
+
+		// subtracting a typed array
+		data = [
+			{'x':[9,null]},
+			{'x':[9,1]},
+			{'x':[9,true]},
+			{'x':[9,3]}
+		];
+		y = new Int32Array( [0,1,2,3] );
 		actual = subtract( data, y, 'x.1' );
 		expected = [
 			{'x':[9,NaN]},
